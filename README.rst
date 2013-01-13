@@ -11,10 +11,9 @@ the `Music Player Daemon <http://musicpd.org>`_.
 Difference with python-mpd
 --------------------------
 
-python-mpd2 is a fork of
-`python-mpd <http://jatreuman.indefero.net/p/python-mpd/>`_. 
-python-mpd2 is a fork of `python-mpd`_. While 0.4.x was backwards compatible
-with python-mpd, starting with 0.5 provides enhanced features
+python-mpd2 is a fork of `python-mpd
+<http://jatreuman.indefero.net/p/python-mpd/>`_.  While 0.4.x was backwards
+compatible with `python-mpd`_, starting with 0.5 provides enhanced features
 which are *NOT* backward compatibles with the original `python-mpd`_ package.
 (see PORTING.txt for more information)
 
@@ -22,11 +21,11 @@ The following features were added:
 
 -  Python 3 support (but you neead at least Python 2.6)
 -  support for the upcoming client-to-client protocol
--  support for new commands from MPD v0.17 (seekcur, prio, prioid,
-   config, searchadd, searchaddpl)
--  remove deprecated commands (volume)
+-  support for new commands from MPD v0.17 (``seekcur``, ``prio``, ``prioid``,
+  ``config``, ``searchadd``, ``searchaddpl``)
+-  remove deprecated commands (``volume``)
 -  explicitly declared MPD commands (which is handy when using for
-   example `IPython <http://ipython.org>`_
+   example `IPython <http://ipython.org>`_)
 -  a test suite
 -  API documentation to add new commands (see `Future
    Compatible <#future-compatible>`_)
@@ -56,7 +55,7 @@ To install *python-mpd2* from source, simply run the command::
 
     $ python setup.py install
 
-You can use the *--help* switch to *setup.py* for a complete list of
+You can use the ``--help`` switch to ``setup.py`` for a complete list of
 commands and their options. See the `Installing Python
 Modules <http://docs.python.org/inst/inst.html>`_ document for more
 details.
@@ -80,7 +79,7 @@ packages to test your applications:
 Debian
 ~~~~~~
 
-Drop this line in */etc/apt/sources.list.d/python-mpd2.list*::
+Drop this line in ``/etc/apt/sources.list.d/python-mpd2.list``::
 
     deb http://sima.azylum.org/debian unstable main
 
@@ -92,9 +91,9 @@ Key fingerprint::
 
     2255 310A D1A2 48A0 7B59  7638 065F E539 32DC 551D
 
-Controls with *apt-key finger*.
+Controls with ``apt-key finger``.
 
-Then simply update/install *python-mpd2* or *python3-mpd* with apt or
+Then simply update/install ``python-mpd2`` or ``python3-mpd`` with apt or
 aptitude:
 
 Arch Linux
@@ -130,25 +129,25 @@ The client library can be used as follows::
 
 A list of supported commands, their arguments (as MPD currently
 understands them), and the functions used to parse their responses can
-be found in *doc/commands.txt*. See the `MPD protocol
+be found in ``doc/commands.txt``. See the `MPD protocol
 documentation <http://www.musicpd.org/doc/protocol/>`_ for more details.
 
-Command lists are also supported using *command\_list\_ok\_begin()* and
-*command\_list\_end()*::
+Command lists are also supported using ``command\_list\_ok\_begin()`` and
+``command\_list\_end()``::
 
     client.command_list_ok_begin()       # start a command list
     client.update()                      # insert the update command into the list
     client.status()                      # insert the status command into the list
     results = client.command_list_end()  # results will be a list with the results
 
-Commands may also return iterators instead of lists if *iterate* is set
-to *True*::
+Commands may also return iterators instead of lists if ``iterate`` is set
+to ``True``::
 
     client.iterate = True
     for song in client.playlistinfo():
         print song["file"]
 
-Each command have a *send\_* and a *fetch\_* variant, which allows to
+Each command have a ``send\_`` and a ``fetch\_`` variant, which allows to
 send a MPD command and then fetch the result later. This is useful for
 the idle command::
 
@@ -178,16 +177,23 @@ With Python 2.x
 ~~~~~~~~~~~~~~~
 
 For backward compatibility with *python-mpd*, when running with Python
-2.x, *python-mpd2* accepts both Unicode strings (ex. u"♥") and UTF-8
-encoded strings (ex. "♥").
+2.x, *python-mpd2* accepts both Unicode strings (ex. ``u"♥"``) and UTF-8
+encoded strings (ex. ``"♥"``).
 
-In order for *MPDClient* to return Unicode strings with Python 2, create
-the instance with the ``use_unicode`` parameter set to ``True``.
+In order for ``MPDClient`` to return Unicode strings with Python 2,
+create the instance with the ``use_unicode`` parameter set to ``True``.
 
 Using Unicode strings should be prefered as it is done transparently by
-the library for you, and makes the transition to Python 3 easier.
+the library for you, and makes the transition to Python 3 easier::
 
-``python >>> import mpd >>> client = MPDClient(use_unicode=True) >>> client.urlhandlers()[0] u'http' >>> client.use_unicode = False # Can be switched back later >>> client.urlhandlers()[0] 'http'``
+    >>> import mpd
+    >>> client = MPDClient(use_unicode=True)
+    >>> client.urlhandlers()[0]
+    u'http'
+    >>> client.use_unicode = False # Can be switched back later
+    >>> client.urlhandlers()[0]
+    'http'``
+
 Using this option in Python 3 doesn't have any effect.
 
 Logging
@@ -211,7 +217,7 @@ Future Compatible
 
 New commands or special handling of commands can be easily implemented.
 Use ``add_command()`` or ``remove_command()`` to modify the commands of
-the *MPDClient* class and all its instances.::
+the ``MPDClient`` class and all its instances.::
 
     def fetch_cover(client):
         """"Take a MPDClient instance as its arguments and return mimetype and image"""
@@ -254,8 +260,7 @@ Just contact me (Mic92) on Github or via email (joerg@higgsboson.tk).
 Usually I hang around on Jabber: sonata@conference.codingteam.net
 
 You can contact the original author by emailing J. Alexander Treuman
-jat@spatialrift.net.
-
-He can also be found idling in #mpd on irc.freenode.net as jat.
+jat@spatialrift.net.  He can also be found idling in #mpd on
+irc.freenode.net as jat.
 
 .. |Build Status| image:: https://travis-ci.org/Mic92/python-mpd2.png

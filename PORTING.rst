@@ -9,8 +9,8 @@ work*.
 
 However, starting from version 0.5, `python-mpd2`_ provides enhanced features
 which are *NOT* backward compatibles with the original `python-mpd`_ package.
-This goal of this document is to explains the differences the releases and if it
-makes sense, how to migrate from one version to another.
+This goal of this document is to explains the differences between the releases
+and if it makes sense, how to migrate from one version to another.
 
 
 Stickers API

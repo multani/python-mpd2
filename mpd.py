@@ -265,7 +265,11 @@ class MPDClient(object):
     def _read_line(self):
         line = self._rfile.readline()
         if self.use_unicode:
-            line = decode_str(line)
+            try:
+                line = decode_str(line)
+            except UnicodeDecodeError as exc:
+                print("Unable to decode data %r: %s" % (line, exc))
+                raise
         if not line.endswith("\n"):
             self.disconnect()
             raise ConnectionError("Connection lost while reading line")
